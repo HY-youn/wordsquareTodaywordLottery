@@ -1,0 +1,23 @@
+{
+  "name": "wordsquare_wordtest_folio",
+  "version": "1.0.0",
+  "description": "wordtest by wordsquare_sample",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wordsquare",
+    "wordtest"
+  ],
+  "author": "gawddong",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "bootstrap": "^5.3.3",
+    "replaceme": "^0.1.1",
+    "scss": "^0.2.4",
+    "swiper": "^11.1.14"
+  },
+  "devDependencies": {}
+}
