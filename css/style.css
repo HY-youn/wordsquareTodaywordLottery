@@ -337,7 +337,7 @@ transform: translateX(-50%) translateY(-50%);
     }
     .ws-word-paragraph {
       position: absolute;
-      top: 35%;
+      top: 25%;
       left: 50%; 
       width: 25rem;
       text-align: center;
@@ -362,7 +362,7 @@ transform: translateX(-50%) translateY(-50%);
       font-size: 2rem;
     }
     .ws-word-paragraph h3{ 
-      margin-top: 3rem;
+      margin-top: 4rem;
     }
     .ws-back-btn-word { 
       position: absolute;
