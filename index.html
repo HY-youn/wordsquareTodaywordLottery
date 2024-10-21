@@ -46,28 +46,84 @@
   </div>
 
 <!-- script area -->
-    <script src="/js/replaceme.js"></script>
+   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/fontawesome.min.js" integrity="sha512-NeFv3hB6XGV+0y96NVxoWIkhrs1eC3KXBJ9OJiTFktvbzJ/0Kk7Rmm9hJ2/c2wJjy6wG0a0lIgehHjCTDLRwWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox.min.js" integrity="sha512-KbRFbjA5bwNan6DvPl1ODUolvTTZ/vckssnFhka5cG80JVa5zSlRPCr055xSgU/q6oMIGhZWLhcbgIC0fyw3RQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" integrity="sha512-Ysw1DcK1P+uYLqprEAzNQJP+J4hTx4t/3X2nbVwszao8wD+9afLjBQYjz7Uk4ADP+Er++mJoScI42ueGtQOzEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/js/replaceme.js"></script>
   <script>  
+    $(function(){
+
+
+const container = $('.container');
+const wsPlaybtn = $('.ws-play-btn');
+const wsBackbtn = $('.ws-back-btn-word');
+// const container = document.querySelector('.container');
+// const wsPlaybtn = document.querySelector('.ws-play-btn');
+
+// wsPlaybtn.addEventListener('click', function(){
+//   container.classList.add('scrolldown');
+// })
+wsPlaybtn.on('click', function(){
+  container.addClass('scrolldown');
+})
+wsBackbtn.on('click', function(){
+  container.removeClass('scrolldown');
+})
+});
+
   const verses = {
-    "잠 3:5~6" : "너는 마음을 다하여 여호와를 의뢰하고 네 명철을 의지하지 말라. 너는 범사에 그를 인정하라. 그리하면 네 길을 지도하시리라",
-    "계 2:1" : "에베소 교회의 사자에게 편지하기를 하나님의 오른손에 일곱 별을 가진 이가 가라사대",
-    "수 1:9" : "내가 너에게 명령한 것이 아니냐? 강하고 담대하라. 두려워하지 말며 놀라지 말라. 네가 어디로 가든지 네 하나님 여호와가 너와 함께 하시느니라.",
-    "빌 4:13" : "내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라",
-    "사 41:10" : "두려워하지 말라 내가 너와 함께 함이니라 놀라지 말라. 나는 네 하나님이 됨이니라. 내가 너를 굳세게 하리라 참으로 너를 도와 주리라. 참으로 나의 의로운 오른손으로 너를 붙들리라"
+    "약 1:27" : "하나님 아버지 앞에서 정결하고 더러움이 없는 경건은 곧 고아와 과부를 그 환난 중에 돌아보고 또 자기를 지켜 세속에 물들지 아니하는 이것이니라",
+    "요 6:44" : "나를 보내신 아버지께서 이끌지 아니하면 아무라도 내게 올 수 없으니 오는 그를 내가 마지막 날에 다시 살리리라",
+    "창 1:27" : "하나님이 자기 형상 곧 하나님의 형상대로 사람을 창조하시되 남자와 여자를 창조하시고",
+    "빌 4:6" : "아무 것도 염려하지 말고 오직 모든 일에 기도와 간구로, 너희 구할 것을 감사함으로 하나님께 아뢰라",
+    "사 40:29" : "피곤한 자에게는 능력을 주시며 무능한 자에게는 힘을 더하시나니"
   }
 
   const drawVerseBtn = document.querySelector('#draw-verse-btn')
+  const versecontentBox = document.querySelector(".ws-word-content");
   function getRandomVerses(){
     const verseContent = document.querySelector(".ws-paragraph-1")
     const verseAddress = document.querySelector(".ws-verses-1")
+    
     
     const keys = Object.keys(verses);
     const randomKey = keys[Math.floor(Math.random() * keys.length)];
     const randomValue = verses[randomKey];
     verseContent.innerText = randomValue;
     verseAddress.innerText = randomKey;
-    drawVerseBtn.addEventListener('click', getRandomVerses);
+
   }
+
+  function fadeOut(){
+    if(versecontentBox.classList.contains('on'))
+    { versecontentBox.style.backgroundImage = "url('')";
+    versecontentBox.classList.remove('on');
+  }
+  else
+    {
+      versecontentBox.style.backgroundImage = "url('../img/maple_title.png')";
+    }
+  }
+  drawVerseBtn.addEventListener('click', () => {
+  if (!versecontentBox.classList.contains('on')) {
+    versecontentBox.style.backgroundImage = "url(../img/bible_loading_gif.gif)";
+    versecontentBox.classList.add('on');
+    
+    // 1500ms 후에 fadeOut과 getRandomVerses 실행
+    setTimeout(() => {
+      fadeOut();
+      getRandomVerses();
+    }, 1500);
+
+  } else {
+    versecontentBox.classList.remove('on');
+    setTimeout(getRandomVerses, 500);
+  }
+});
+  
   window.onload = getRandomVerses;
   
 
@@ -84,11 +140,5 @@
     onComplete: false                                
 });
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/fontawesome.min.js" integrity="sha512-NeFv3hB6XGV+0y96NVxoWIkhrs1eC3KXBJ9OJiTFktvbzJ/0Kk7Rmm9hJ2/c2wJjy6wG0a0lIgehHjCTDLRwWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox.min.js" integrity="sha512-KbRFbjA5bwNan6DvPl1ODUolvTTZ/vckssnFhka5cG80JVa5zSlRPCr055xSgU/q6oMIGhZWLhcbgIC0fyw3RQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" integrity="sha512-Ysw1DcK1P+uYLqprEAzNQJP+J4hTx4t/3X2nbVwszao8wD+9afLjBQYjz7Uk4ADP+Er++mJoScI42ueGtQOzEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="js/script.js"></script>
 </body>
 </html>
