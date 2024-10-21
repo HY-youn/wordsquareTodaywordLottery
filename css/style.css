@@ -337,13 +337,26 @@ transform: translateX(-50%) translateY(-50%);
     }
     .ws-word-paragraph {
       position: absolute;
-      top: 40%;
+      top: 35%;
       left: 50%; 
       width: 25rem;
       text-align: center;
       transform: translateX(-50%);
     }
-    
+    .ws-word-content {
+      position: absolute;
+      display: block;
+      background-image: url(../img/maple_title.png);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+      top: 20%;
+      left: 50%; 
+      width: 25rem;
+      height: 25rem;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 10;
+    }
     .ws-word-paragraph p{
       font-family: 'Hakgyoansim BareondotumBold';
       font-size: 2rem;
